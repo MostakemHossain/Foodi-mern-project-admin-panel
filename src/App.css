@@ -3,3 +3,9 @@
 boby{
   font-family: 'Inter', sans-serif;
 }
+header{
+  z-index: 10001  !important;
+}
+.section-container{
+  @apply max-w-screen-2xl mx-auto container xl:px-24 px-4;
+}
