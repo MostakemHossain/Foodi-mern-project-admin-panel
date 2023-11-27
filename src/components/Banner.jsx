@@ -14,11 +14,11 @@ const Banner = () => {
                             <div className='space-y-1'>
                                 <h5 className='font-medium'>Spicy noodles</h5>
                                 <div className="rating rating-sm">
-                                    <input type="radio" name="rating-6" className="mask mask-star-2 bg-yellow-400" />
-                                    <input type="radio" name="rating-6" className="mask mask-star-2 bg-yellow-400" checked />
-                                    <input type="radio" name="rating-6" className="mask mask-star-2 bg-yellow-400" checked />
-                                    <input type="radio" name="rating-6" className="mask mask-star-2 bg-yellow-400" checked />
-                                    <input type="radio" name="rating-6" className="mask mask-star-2 bg-yellow-400" />
+                                    <input type="radio" name="rating-6" className="mask mask-star-2 bg-yellow-400" readOnly />
+                                    <input type="radio" name="rating-6" className="mask mask-star-2 bg-yellow-400" checked  readOnly/>
+                                    <input type="radio" name="rating-6" className="mask mask-star-2 bg-yellow-400" checked readOnly />
+                                    <input type="radio" name="rating-6" className="mask mask-star-2 bg-yellow-400" checked readOnly />
+                                    <input type="radio" name="rating-6" className="mask mask-star-2 bg-yellow-400" readOnly />
                                 </div>
                                 <p className='text-red'>$18.00</p>
                             </div>
