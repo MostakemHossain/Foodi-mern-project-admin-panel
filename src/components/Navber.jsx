@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { BiPhoneCall } from "react-icons/bi";
+import { FaRegUser } from 'react-icons/fa';
+import Modal from './Modal';
 import logo from "/logo.png";
 
 const Navber = () => {
@@ -81,9 +82,11 @@ const Navber = () => {
           <span className="badge badge-sm indicator-item">8</span>
         </div>
       </div>
-                    {/* btn */}
-                    <a className="btn bg-green rounded-full px-6 text-white flex items-center gap-2"><BiPhoneCall/>Contact</a>
+                    {/* login btn */}
+                    <button onClick={()=>document.getElementById('my_modal_5').showModal()} className="btn bg-green rounded-full px-6 text-white flex items-center gap-2"><FaRegUser/>Contact</button>
+                    <Modal/>
                 </div>
+
             </div>
         </header>
     )
