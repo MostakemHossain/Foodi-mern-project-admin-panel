@@ -1,6 +1,7 @@
 import {
   createBrowserRouter
 } from "react-router-dom";
+import SignUp from "../components/signUp";
 import Main from "../layout/Main";
 import Home from "../pages/Home/Home";
 import Menu from "../pages/shop/Menu";
@@ -20,6 +21,10 @@ import Menu from "../pages/shop/Menu";
       }
       ]
     },
+    {
+      path:'/signup',
+      element:<SignUp/>
+    }
   ]);
 
   export default router
