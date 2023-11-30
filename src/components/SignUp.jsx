@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { FaFacebookF } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 import Modal from './Modal';
 
 const SignUp = () => {
@@ -13,7 +14,7 @@ const SignUp = () => {
       } = useForm()
       const onSubmit = (data) => console.log(data)
   return (
-    <div className='max-w-md bg-white mx-auto shadow w-full flex  items-center justify-center my-20 '>
+    <div className='max-w-screen bg-white mx-auto shadow w-full flex  items-center justify-center mt-20'>
         <div className="modal-action flex flex-col justify-center mt-0">
     <form onSubmit={handleSubmit(onSubmit)} className="card-body" method='dialog'>
       <h1 className='font-bold text-lg'>Create a account</h1>
@@ -44,6 +45,12 @@ const SignUp = () => {
         <input type="submit" value="Sign up" className="btn hover:bg-green bg-green text-white"/>
       </div>
       <p>Have an account? <button onClick={()=>document.getElementById('my_modal_5').showModal()} className='text-red ml-2 underline font-bold'>Login</button>  </p>
+
+      <Link
+      to="/"
+      
+      
+      className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</Link>
     </form>
     <div className='text-center space-x-7 mb-4'>
       <button className='btn btn-circle hover:bg-green hover:text-white'>

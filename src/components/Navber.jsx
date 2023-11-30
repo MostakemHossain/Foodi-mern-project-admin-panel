@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaRegUser } from 'react-icons/fa';
+import { AuthContext } from '../contexts/AuthProvider';
 import Modal from './Modal';
 import logo from "/logo.png";
 
 const Navber = () => {
     const [isSticky,setSticky]= useState(false);
+    const {user}= useContext(AuthContext);
+   
 
     //handle scroll function
     useEffect(()=>{
