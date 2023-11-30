@@ -1,16 +1,87 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { FaFacebookF } from 'react-icons/fa6';
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+import { AuthContext } from '../contexts/AuthProvider';
 const Modal = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    
     formState: { errors },
   } = useForm()
-  const onSubmit = (data) => console.log(data)
+  const {signUpWithGmail,login}=useContext(AuthContext);
+  const [errorMessage,setErrorMessage]=useState("");
+
+  // redirecting page
+  const location = useLocation();
+  const navigate= useNavigate();
+  const from = location.state?.from?.pathname || "/"
+
+  const onSubmit = (data) => {
+    console.log(data)
+    const email= data.email;
+    const password= data.password;
+    login(email,password)
+    .then((result) => {
+      const user = result.user;
+      toast.success('🦄 Login In SuccessFully', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+
+        
+      });
+      navigate(from,{replace:true});
+      document.getElementById('my_modal_5').close()
+    })
+    .catch((err) => {
+      const errorMessage=err.message;
+      setErrorMessage("Provide a correct email & password");
+     
+    });
+  }
+
+ 
+
+  const handleLogin = () => {
+    signUpWithGmail()
+      .then((result) => {
+        const user = result.user;
+        toast.success('🦄 Sign In SuccessFully', {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          // Add a custom class for styling
+        });
+      })
+      .catch((err) => {
+        toast.error('Something Went Wrong', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          className: 'toast-dark',
+        });
+      });
+  };
+
   
   
   return (
@@ -47,6 +118,13 @@ const Modal = () => {
           </label>
         </div>
 
+         {/* error message  */}
+
+         {
+          errorMessage? <p className='text-red text-xs italic'>{errorMessage}</p>: ""
+         }
+
+
          {/* login btn  */}
         <div className="form-control mt-6">
           <input type="submit" value="Login" className="btn hover:bg-green bg-green text-white"/>
@@ -54,7 +132,7 @@ const Modal = () => {
         <p>Dont have an account? <Link className='text-red ml-2 underline font-bold' to="/signup">Sign up</Link>  </p>
       </form>
       <div className='text-center space-x-7 mb-4'>
-        <button className='btn btn-circle hover:bg-green hover:text-white'>
+        <button onClick={handleLogin}  className='btn btn-circle hover:bg-green hover:text-white'>
           <FaGoogle/>
 
         </button >

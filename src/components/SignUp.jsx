@@ -1,18 +1,51 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { FaFacebookF } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../contexts/AuthProvider';
 import Modal from './Modal';
 
 const SignUp = () => {
+  const {createUser}=useContext(AuthContext);
+  const location = useLocation();
+  const navigate= useNavigate();
+  const from = location.state?.from?.pathname || "/"
     const {
         register,
         handleSubmit,
     
         formState: { errors },
       } = useForm()
-      const onSubmit = (data) => console.log(data)
+      const onSubmit = (data) => {
+        console.log(data)
+      const email= data.email;
+     const password= data.password;
+     createUser(email,password).then((result)=>{
+      const user= result.user;
+      toast.success('🦄 Create user Successfully', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        
+        
+      });
+
+      navigate(from,{replace:true});
+      document.getElementById('my_modal_5').close()
+      
+      
+     }).catch((err)=>{
+      toast("Something went Wrong");
+     }) 
+
+      }
   return (
     <div className='max-w-screen bg-white mx-auto shadow w-full flex  items-center justify-center mt-20'>
         <div className="modal-action flex flex-col justify-center mt-0">

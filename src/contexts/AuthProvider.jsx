@@ -59,6 +59,7 @@ const AuthProvider = ({children}) => {
         loading,
         createUser,
         signInWithPopup,
+        signUpWithGmail,
         login,
         logOut,
         updateUserProfile,
