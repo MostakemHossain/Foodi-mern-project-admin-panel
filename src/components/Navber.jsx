@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { FaRegUser } from 'react-icons/fa';
 import { AuthContext } from '../contexts/AuthProvider';
 import Modal from './Modal';
+import Profile from './Profile';
 import logo from "/logo.png";
 
 const Navber = () => {
@@ -86,7 +87,9 @@ const Navber = () => {
         </div>
       </div>
                     {/* login btn */}
-                    <button onClick={()=>document.getElementById('my_modal_5').showModal()} className="btn bg-green rounded-full px-6 text-white flex items-center gap-2"><FaRegUser/>Login</button>
+                    {
+                        user ? <Profile user={user}/>: <button onClick={()=>document.getElementById('my_modal_5').showModal()} className="btn bg-green rounded-full px-6 text-white flex items-center gap-2"><FaRegUser/>Login</button>
+                    }
                     <Modal/>
                 </div>
 

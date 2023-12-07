@@ -3,6 +3,7 @@ import {
 } from "react-router-dom";
 import SignUp from "../components/signUp";
 import Main from "../layout/Main";
+import UpdateProfile from "../pages/dashboard/UpdateDashboard";
 import Home from "../pages/Home/Home";
 import Menu from "../pages/shop/Menu";
 
@@ -18,7 +19,11 @@ import Menu from "../pages/shop/Menu";
         {
           path:'/menu',
           element:<Menu/>
-      }
+      },
+        {
+          path:'/update-profile',
+          element:<UpdateProfile/>
+      },
       ]
     },
     {

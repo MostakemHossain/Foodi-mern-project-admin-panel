@@ -55,6 +55,7 @@ const Modal = () => {
     signUpWithGmail()
       .then((result) => {
         const user = result.user;
+        console.log(result);
         toast.success('🦄 Sign In SuccessFully', {
           position: "bottom-right",
           autoClose: 5000,
@@ -66,6 +67,8 @@ const Modal = () => {
           theme: "dark",
           // Add a custom class for styling
         });
+        navigate(from,{replace:true});
+        document.getElementById('my_modal_5').close()
       })
       .catch((err) => {
         toast.error('Something Went Wrong', {
